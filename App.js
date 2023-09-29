@@ -24,7 +24,7 @@ export default function App() {
     setPhone(phone);
   }
   return (
-    <LinearGradient colors={["rgb(255, 215, 245)", 'transparent']}>
+    <LinearGradient colors={["rgb(195, 250, 240)", 'transparent']}>
     // <View style={styles.container}>
       {/* <Text>Open up App.js to start working on your app!</Text> */}
       
