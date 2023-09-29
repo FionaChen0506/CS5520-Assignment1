@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import StartingScreen from './screens/StartingScreen';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 
 
@@ -22,10 +24,12 @@ export default function App() {
     setPhone(phone);
   }
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["rgb(255, 215, 245)", 'transparent']}>
+    // <View style={styles.container}>
       {/* <Text>Open up App.js to start working on your app!</Text> */}
       
-      <StatusBar style="auto" />
+      
+      <SafeAreaView>
       <StartingScreen
             name={name}
             email={email}
@@ -34,9 +38,11 @@ export default function App() {
             setEmail={sendEmail}
             setPhone={sendPhone}
       />
-      
-      
-    </View>
+       </SafeAreaView>  
+       <StatusBar style="auto" />   
+
+    // </View>
+    </LinearGradient>
   );
 }
 
@@ -47,4 +53,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+  view: {
+    width: '100%',
+    height: '100%',
+  },
+},);
