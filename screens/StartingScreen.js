@@ -20,7 +20,7 @@ export default function startingScreen(
 
     // Function to handle user input changes
     const handleNameChange = (text) => {
-        console.log(text);
+        //console.log(text);
         setName(text);
         setErrorName('');
       };
@@ -67,12 +67,13 @@ export default function startingScreen(
         };
   return (
     <View style={styles.container}>
+      <Text>Welcome</Text>
     <Card style={styles.cardContainer}>
       <Text>Name</Text>
       <TextInput
         value={name}
         onChangeText={handleNameChange}
-        placeholder="Enter your name"
+        style={[styles.input, { textAlign: 'center' }]} 
       />
       {errorName !== '' && <Text style={styles.error}>{errorName}</Text>}
 
@@ -80,7 +81,7 @@ export default function startingScreen(
       <TextInput
         value={email}
         onChangeText={handleEmailChange}
-        placeholder="Enter your email"
+        style={[styles.input, { textAlign: 'center' }]} 
       />
       {errorEmail !== '' && <Text style={styles.error}>{errorEmail}</Text>}
 
@@ -88,16 +89,18 @@ export default function startingScreen(
       <TextInput
         value={phone}
         onChangeText={handlePhoneChange}
-        placeholder="Enter your phone number"
+        style={[styles.input, { textAlign: 'center' }]} 
       />
       {errorPhone !== '' && <Text style={styles.error}>{errorPhone}</Text>}
 
-
+      <View style={styles.checkboxContainer}>
       <Checkbox
-        label="I'm not a robot"
+        title="I'm not a robot"
         value={isChecked}
         onValueChange={(value) => setIsChecked(value)}
       />
+      <Text> I'm not a robot</Text>
+      </View>
         <View style={styles.buttonContainer}>
             <Button title="Reset" onPress={handleReset} color="red" />
             <Button
@@ -116,15 +119,25 @@ export default function startingScreen(
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        //justifyContent: 'center',
+        //alignItems: 'center',
         width: '100%',
         display: 'flex',
-        marginTop: 100,
+        marginTop: 40,
+        
       },
       cardContainer:{
+        flex: 1,
         width: '80%',
-        height: '80%',
+        //height: '80%',
+        justifyContent: 'center',
+        marginTop: 40,
+      },
+      checkboxContainer:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
       },
       error: {
         color: 'red',
@@ -133,5 +146,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 20,
+      },
+      input: {
+        borderBottomWidth: 1, 
+        borderColor: 'blue', 
+        paddingVertical: 3,
       },
 })
