@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 20,
+        width: "80%"
         //marginLeft: 20,
         //marginRight: 20,
       },

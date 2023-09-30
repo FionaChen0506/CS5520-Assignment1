@@ -74,7 +74,7 @@ export default function App() {
         />
       )}
 
-      {currentScreen === 'GameScreen' && <GameScreen />}
+      {currentScreen === 'GameScreen' && <GameScreen setScreen={setCurrentScreen}/>}
        
       </SafeAreaView>  
       {/* <StatusBar style="auto" />    */}
