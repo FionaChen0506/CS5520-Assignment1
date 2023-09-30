@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import Checkbox from 'expo-checkbox';
 import React, { useState } from 'react';
 import Card from '../components/Card';
+import colors from '../colors';
 
 export default function startingScreen(
 {   name: passedName,
@@ -75,27 +76,27 @@ export default function startingScreen(
     <View style={styles.container}>
       <Text>Welcome</Text>
     <Card style={styles.cardContainer}>
-      <Text>Name</Text>
+      <Text style={styles.text}>Name:</Text>
       <TextInput
         value={name}
         onChangeText={handleNameChange}
-        style={[styles.input, { textAlign: 'center' }]} 
+        style={[styles.input, styles.inputStyles]} 
       />
       {errorName !== '' && <Text style={styles.error}>{errorName}</Text>}
 
-      <Text>Email</Text>
+      <Text style={styles.text}>Email:</Text>
       <TextInput
         value={email}
         onChangeText={handleEmailChange}
-        style={[styles.input, { textAlign: 'center' }]} 
+        style={[styles.input, styles.inputStyles]} 
       />
       {errorEmail !== '' && <Text style={styles.error}>{errorEmail}</Text>}
 
-      <Text>Phone</Text>
+      <Text style={styles.text}>Phone:</Text>
       <TextInput
         value={phone}
         onChangeText={handlePhoneChange}
-        style={[styles.input, { textAlign: 'center' }]} 
+        style={[styles.input, styles.inputStyles]} 
       />
       {errorPhone !== '' && <Text style={styles.error}>{errorPhone}</Text>}
 
@@ -105,15 +106,15 @@ export default function startingScreen(
         value={isChecked}
         onValueChange={(value) => setIsChecked(value)}
       />
-      <Text> I'm not a robot</Text>
+      <Text style={{ fontSize: 18, color:"blue" }}> I'm not a robot</Text>
       </View>
         <View style={styles.buttonContainer}>
-            <Button title="Reset" onPress={handleReset} color="red" />
+            <Button title="Reset" onPress={handleReset} color={colors.redButton} />
             <Button
             title="Start"
             onPress={handleStart}
             disabled={!isChecked}
-            color="green"
+            color={colors.blueButton}
             />
         </View>
 
@@ -147,18 +148,35 @@ const styles = StyleSheet.create({
         marginTop: 10,
       },
       error: {
-        color: 'red',
+        color: colors.errorColor,
+        fontSize: 18,
       },
       buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 20,
-        marginLeft: 30,
-        marginRight: 30,
+        //marginLeft: 20,
+        //marginRight: 20,
       },
       input: {
         borderBottomWidth: 1, 
         borderColor: 'blue', 
-        paddingVertical: 3,
+        paddingVertical: 4,
+        marginBottom: 15,
+        paddingHorizontal:4,
+        
+      },
+      inputStyles: {
+        textAlign: 'center',
+        fontSize: 22, 
+        fontWeight: 'bold', 
+        color: colors.blueText, 
+
+      },
+      text: {
+        fontSize: 22,
+        //color: "#128056",
+        marginBottom: 30,
+        marginTop: 10,
       },
 })
