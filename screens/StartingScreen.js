@@ -7,6 +7,7 @@ export default function startingScreen(
 {   name: passedName,
     email: passedEmail,
     phone: passedPhone,
+    onValidationSuccess,
 }) {
 
     const [name, setName] = useState(passedName || '');
@@ -39,6 +40,9 @@ export default function startingScreen(
         setName('');
         setEmail('');
         setPhone('');
+        setErrorName('');
+        setErrorEmail('');
+        setErrorPhone('');
         setIsChecked(false);
         
       };
@@ -63,6 +67,8 @@ export default function startingScreen(
         if (isChecked && isValidName && isValidEmail && isValidPhone) {
             // Perform the desired action when all inputs are valid and checkbox is checked
             console.log('All inputs are valid');
+            // Call the callback function to pass data back to App.js
+            onValidationSuccess({ name, email, phone });
         }
         };
   return (
@@ -132,6 +138,7 @@ const styles = StyleSheet.create({
         //height: '80%',
         justifyContent: 'center',
         marginTop: 40,
+        
       },
       checkboxContainer:{
         flexDirection: 'row',
@@ -146,6 +153,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 20,
+        marginLeft: 30,
+        marginRight: 30,
       },
       input: {
         borderBottomWidth: 1, 
