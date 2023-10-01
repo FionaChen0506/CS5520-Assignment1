@@ -146,7 +146,9 @@ const styles = StyleSheet.create({
     borderColor: 'blue', 
     paddingVertical: 4,
     paddingHorizontal:4,
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color:colors.blueText,
     alignSelf: 'center',
   },
   buttonContainer: {

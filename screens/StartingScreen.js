@@ -5,6 +5,7 @@ import Card from '../components/Card';
 import colors from '../colors';
 import { useEffect } from 'react';
 import Header from '../components/Header';
+import Input from '../components/Input';
 
 export default function startingScreen(
 {   name: passedName,
@@ -92,26 +93,23 @@ export default function startingScreen(
       <Header name="Welcome"/>
     <Card style={styles.cardContainer}>
       <Text style={styles.text}>Name:</Text>
-      <TextInput
+      <Input
         value={name}
         onChangeText={handleNameChange}
-        style={[styles.input, styles.inputStyles]} 
       />
       {errorName !== '' && <Text style={styles.error}>{errorName}</Text>}
 
       <Text style={styles.text}>Email Address:</Text>
-      <TextInput
+      <Input
         value={email}
         onChangeText={handleEmailChange}
-        style={[styles.input, styles.inputStyles]} 
       />
       {errorEmail !== '' && <Text style={styles.error}>{errorEmail}</Text>}
 
       <Text style={styles.text}>Phone Number:</Text>
-      <TextInput
+      <Input
         value={phone}
         onChangeText={handlePhoneChange}
-        style={[styles.input, styles.inputStyles]} 
       />
       {errorPhone !== '' && <Text style={styles.error}>{errorPhone}</Text>}
 
@@ -121,7 +119,7 @@ export default function startingScreen(
         value={isChecked}
         onValueChange={(value) => setIsChecked(value)}
       />
-      <Text style={{ fontSize: 18, color:"blue" }}> I'm not a robot</Text>
+      <Text style={{ fontSize: 18, color:"blue" }}> I am not a robot</Text>
       </View>
         <View style={styles.buttonContainer}>
             <Button title="Reset" onPress={handleReset} color={colors.redButton} />
@@ -141,9 +139,8 @@ export default function startingScreen(
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //justifyContent: 'center',
-        //alignItems: 'center',
         width: '90%',
+        //height: '90%',
         display: 'flex',
         marginTop: 6,
         
@@ -151,9 +148,7 @@ const styles = StyleSheet.create({
       cardContainer:{
         flex: 1,
         width: '90%',
-        //height: '80%',
         justifyContent: 'center',
-        //marginTop: 30,
         
       },
       checkboxContainer:{
@@ -169,33 +164,15 @@ const styles = StyleSheet.create({
       buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        //justifyContent: 'space-between',
-        marginTop: 25,
+        marginTop: 20,
         marginBottom: 15,
-        //width: 300,
         width: "90%",
-        alignSelf: 'center',
-        //marginLeft: 20,
-        //marginRight: 20,
-      },
-      input: {
-        borderBottomWidth: 1, 
-        borderColor: 'blue', 
-        paddingVertical: 4,
-        marginBottom: 15,
-        paddingHorizontal:4,
-        
-      },
-      inputStyles: {
-        textAlign: 'center',
-        fontSize: 22, 
-        fontWeight: 'bold', 
-        color: colors.blueText, 
+        //alignSelf: 'center',
+        alignItems: 'center',
 
       },
       text: {
         fontSize: 22,
-        //color: "#128056",
         marginBottom: 30,
         marginTop: 10,
         color: colors.blueText, 

@@ -18,7 +18,6 @@ export default function App() {
 
 
   const handleValidationSuccess = ({ name, email, phone }) => {
-    // Do something with the validated data (name, email, phone)
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Phone:", phone);
@@ -84,9 +83,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  view: {
-    //width: '100%',
-    height: '100%',
   },
 },);

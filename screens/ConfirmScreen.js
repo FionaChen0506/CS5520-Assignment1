@@ -17,9 +17,6 @@ export default function ConfirmScreen({ name, email, phone, setScreen}) {
   };
 
   return (
-    // <View>
-    //   <Text>hi you are at ConfirmScreen</Text>
-    // </View>
     <Modal animationType="none" transparent={true}>
       <View style={styles.container}>
         <Card>
