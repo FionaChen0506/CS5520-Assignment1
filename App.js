@@ -7,28 +7,14 @@ import GameScreen from './screens/GameScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-
-
-
 export default function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [confirmedData, setConfirmedData] = useState(null); 
-  const [currentScreen, setCurrentScreen] = useState('StartingScreen');
-
-  function sendName(name){
-    setName(name);
-    console.log(name);
-  }
-
-  function sendEmail(email){
-    setEmail(email);
-  }
-
-  function sendPhone(phone){
-    setPhone(phone);
-  }
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [currentScreen, setCurrentScreen] = useState
+  ('StartingScreen');
 
 
   const handleValidationSuccess = ({ name, email, phone }) => {
@@ -43,8 +29,16 @@ export default function App() {
     // Set the data in confirmedData state to pass to ConfirmScreen
     setConfirmedData({ name, email, phone });
     setCurrentScreen('ConfirmScreen');
+
+    // Set loggedIn to true when validation is successful
+    setLoggedIn(true);
   };
 
+    // Function to reset user data
+    const handleLogout = () => {
+      setLoggedIn(false);
+      setCurrentScreen('StartingScreen'); 
+    };
 
   return (
     <LinearGradient
@@ -57,10 +51,9 @@ export default function App() {
             name={name}
             email={email}
             phone={phone}
-            setName={sendName}
-            setEmail={sendEmail}
-            setPhone={sendPhone}
             onValidationSuccess={handleValidationSuccess}
+            loggedIn={loggedIn} 
+            onLogout={handleLogout}
       />
       )}
 
@@ -74,7 +67,10 @@ export default function App() {
         />
       )}
 
-      {currentScreen === 'GameScreen' && <GameScreen setScreen={setCurrentScreen}/>}
+      {currentScreen === 'GameScreen' && 
+      <GameScreen setScreen={setCurrentScreen}
+                  loggedIn={loggedIn}
+                  onLogout={handleLogout}/>}
        
       </SafeAreaView>  
       {/* <StatusBar style="auto" />    */}

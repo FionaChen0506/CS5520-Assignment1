@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
 import Card from '../components/Card';
+import Header from '../components/Header';
+import colors from '../colors';
 
-export default function GameScreen({ setScreen }) {
+export default function GameScreen({ setScreen ,  loggedIn, onLogout,}) {
   const [randomNumber, setRandomNumber] = useState(null);
   const [userInput, setUserInput] = useState('');
   const [guesses, setGuesses] = useState(0);
@@ -19,8 +21,11 @@ export default function GameScreen({ setScreen }) {
   }, []);
 
   const handleLogout = () => {
+    // Call the onLogout function to log the user out
+    onLogout();
     // Navigate to the StartingScreen and reset all information
     setScreen('StartingScreen');
+
   };
 
   const handleReset = () => {
@@ -30,19 +35,26 @@ export default function GameScreen({ setScreen }) {
 
   const handleConfirm = () => {
     const guess = parseInt(userInput);
-    setGuesses(guesses + 1);
-
-    if (guess === randomNumber) {
-      // User guessed correctly
-      setResult('win');
+    //setGuesses(guesses + 1);
+  
+    if (guess >= 10 && guess <= 20) {
+      setGuesses(guesses + 1);
+      if (guess === randomNumber) {
+        // User guessed correctly
+        setResult('win');
+      } else {
+        // User guessed incorrectly, show sad smiley face
+        setResult('lose');
+      }
+  
+      // Clear the TextInput
+      setUserInput('');
     } else {
-      // User guessed incorrectly, show sad smiley face
-      setResult('lose');
+      // Show an alert for invalid input
+      alert('Please enter a number between 10 and 20', 'Invalid Number');
     }
-
-    // Clear the TextInput
-    setUserInput('');
   };
+  
 
   const handleTryAgain = () => {
     // Clear the TextInput and reset the result
@@ -66,46 +78,47 @@ export default function GameScreen({ setScreen }) {
       <View style={styles.header}>
         <Button title="Logout" onPress={handleLogout} />
       </View>
-      <Text>Guess a number between 10 & 20</Text>
+      <Header name="Guess a number between 10 & 20"/>
       <Card>
         {result === null && (
           <>
-            <Text>Enter A Number</Text>
+            <Text style={styles.text}>Enter A Number</Text>
             <TextInput
               style={styles.input}
               value={userInput}
               onChangeText={setUserInput}
             />
             <View style={styles.buttonContainer}>
-              <Button title="Reset" onPress={handleReset} />
-              <Button title="Confirm" onPress={handleConfirm} />
+              <Button title="Reset" onPress={handleReset} color={colors.redButton}/>
+              <Button title="Confirm" onPress={handleConfirm} color={colors.blueButton}/>
             </View>
           </>
         )}
 
         {result === 'lose' && (
           <>
+          <Text style={styles.text}>You did not guess correct!</Text>
           <Image
-            source={require('../assets/sad-smiley.jpg')} // Replace with your image source
-            style={styles.smileyImage}
+            source={require('../assets/sad-smiley.png')} // Replace with your image source
+            style={styles.image}
           />
-            <Text>Incorrect guess. Try again!</Text>
-            <Button title="Try Again" onPress={handleTryAgain} />
+            
+            <Button title="Try Again" onPress={handleTryAgain} color={colors.blueButton}/>
           </>
           
         )}
 
         {result === 'win' && (
           <>
-            <Text>Congratulations! You guessed correct!</Text>
-            <Text>Number of guesses: {guesses}</Text>
+            <Text style={styles.text}>You guessed correct!</Text>
+            <Text style={styles.text}>Number of guesses: {guesses}</Text>
             <Image
               source={{
                 uri: `https://picsum.photos/id/${randomNumber}/100/100`,
               }}
-              style={styles.resultImage}
+              style={styles.image}
             />
-            <Button title="New Game" onPress={handleNewGame} />
+            <Button title="New Game" onPress={handleNewGame} color={colors.blueButton}/>
           </>
         )}
       </Card>
@@ -117,6 +130,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    marginTop:30,
   },
   header: {
     alignSelf: 'flex-end',
@@ -124,32 +138,40 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    // width: 100,
-    // borderWidth: 1,
-    // borderColor: 'gray',
-    // marginVertical: 10,
-    // paddingHorizontal: 5,
+    width: 50,
+    textAlign: 'center',
+    marginTop:20,
+    marginBottom: 30,
     borderBottomWidth: 1, 
     borderColor: 'blue', 
     paddingVertical: 4,
-    marginBottom: 15,
     paddingHorizontal:4,
-    marginLeft: 40,
-    marginRight: 40,
+    fontSize: 16,
+    alignSelf: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     //width: '100%',
+    width: '70%',
+    alignSelf: 'center',
   },
-  smileyImage: {
+  image: {
     width: 100,
     height: 100,
+    alignSelf: 'center',
+    marginTop: 15,
+    marginBottom: 20,
+
   },
-  resultImage: {
-    width: 100,
-    height: 100,
-    marginVertical: 10,
+
+  text: {
+    fontSize: 20,
+    //color: "#128056",
+    marginBottom: 10,
+    marginTop: 10,
+    color: colors.blueText, 
+    textAlign: 'center',
   },
 });
 
