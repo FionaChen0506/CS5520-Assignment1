@@ -14,7 +14,7 @@ const Input = ({ value, onChangeText }) => {
 
 const styles = StyleSheet.create({
   input: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 1.5,
     borderColor: colors.blueButton,
     paddingVertical: 4,
     marginBottom: 15,

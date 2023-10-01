@@ -52,7 +52,6 @@ export default function App() {
             phone={phone}
             onValidationSuccess={handleValidationSuccess}
             loggedIn={loggedIn} 
-            onLogout={handleLogout}
       />
       )}
 

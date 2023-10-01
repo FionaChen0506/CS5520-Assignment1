@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
         width: '90%',
         //height: '90%',
         display: 'flex',
-        marginTop: 6,
+        //marginTop: 6,
+        marginVertical: '1.5%',
         
       },
       cardContainer:{
@@ -159,22 +160,24 @@ const styles = StyleSheet.create({
       },
       error: {
         color: colors.errorColor,
-        fontSize: 18,
+        fontSize: 16,
       },
       buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 20,
-        marginBottom: 15,
+        //marginTop: 20,
+        //marginBottom: 15,
         width: "90%",
         //alignSelf: 'center',
         alignItems: 'center',
+        marginVertical: '5%',
 
       },
       text: {
         fontSize: 22,
-        marginBottom: 30,
-        marginTop: 10,
+        //marginBottom: 30,
+        //marginTop: 10,
         color: colors.blueText, 
+        marginVertical: '6%',
       },
 })
